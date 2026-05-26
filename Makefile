@@ -45,6 +45,13 @@ akida-pcie-y += akida-dw-edma/dw-edma-v0-core.o
 akida-pcie-y += akida-dw-edma/dw-edma-v0-debugfs.o
 akida-pcie-y += akida-dw-edma/dw-hdma-v0-core.o
 akida-pcie-y += akida-dw-edma/dw-hdma-v0-debugfs.o
+else ifneq ($(word 6,$(AKIDA_KERNEL_VERSION_RANK)), 6.12)
+ccflags-y += -I$(src)/kernel/5.16/drivers/dma
+akida-pcie-y += akida-dw-edma/dw-edma-core.o
+akida-pcie-y += akida-dw-edma/dw-edma-v0-core.o
+akida-pcie-y += akida-dw-edma/dw-edma-v0-debugfs.o
+akida-pcie-y += akida-dw-edma/dw-hdma-v0-core.o
+akida-pcie-y += akida-dw-edma/dw-hdma-v0-debugfs.o
 else
 $(error Kernel $(VERSION).$(PATCHLEVEL) not supported. Some incompatibilities can be present)
 endif
